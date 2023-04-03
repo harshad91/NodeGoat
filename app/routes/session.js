@@ -272,6 +272,17 @@ function SessionHandler(db) {
             });
         });
     };
+
+    this.getUserById_2 = (userId) => {
+        userDAO.getUserById(userId, (err, doc) => {
+            if (err) return next(err);
+            doc.userId = userId;
+            return res.render("dashboard", {
+                ...doc,
+                environmentalScripts
+            });
+        });
+    };
 }
 
 module.exports = SessionHandler;
